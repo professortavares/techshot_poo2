@@ -1,5 +1,7 @@
 # Visão do produto
 
+![](./piui_abacaxi.jpg)
+
 ## Elevator Pitch
 
 O **piui** 
@@ -20,19 +22,20 @@ que **permite a interação entre programadores**.
 ## Requisitos gerais
 
 1. O sistema deve ser acessível via web (mobile ou navegador)
-2. O sistema deve permitir que o usuário crie se registre e crie uma conta
+2. O sistema deve permitir que o usuário se registre e crie uma conta
 3. Permite que os usuário possam postar conteúdo de programação
 4. Permite que os usuário possam reagir a conteúdo que foi postado por outros usuários
 5. Permite que os usuário possam comentar em conteúdo que foi postado por outros usuários
 6. Permite que os usuário possam seguir outros usuários
 7. Permite que os usuário possam criar comunidades e possam postar conteúdo nelas
 8. Permite que os usuários vejam o engajamento  
+99. Permite que os usuários possam cancelar a conta
 
 ## Requisitos específicos
 
 ### Detalhamento do requisito 2:
 
-- 2.1 O sistema deve permitir que o usuário crie se registre e crie uma conta informando seu nome, email, senha e data de nascimento.
+- 2.1 O sistema deve permitir que o usuário se registre e crie uma conta informando seu nome, nome de usuário (@), email, telefone, senha e data de nascimento.
 
 ### Detalhamento do requisito 3:
     
@@ -57,9 +60,24 @@ que **permite a interação entre programadores**.
 
 ### Stories do requisito específico 2.1
 - Eu, **enquanto usuário**, quero me registrar no sistema 
-informando meu nome, email, senha e data de nascimento, 
+informando meu nome, nome de usuário (@), email, telefone, senha e data de nascimento, 
 **para que eu possa usar o sistema posteriormente**. 
-Observação: A senha deve ser criptografada.
+   - Critério de aceite: Após o registro do usuário verificar que senha deve ser criptografada.
+   - Critério de aceite: Após o registro do usuário verificar que o email deve ser único.
+   - Critério de aceite: Após o registro do usuário verificar que o nome de usuário deve ser único.
+   - Critério de aceite: Após o registro do usuário verificar que a data de nascimento deve ser válida.
+   - Critério de aceite: Após o registro do usuário verificar que o email deve ser válido.
+   - Critério de aceite: Após o registro do usuário verificar que o nome deve ser maior que 3 caracteres.
+   - Critério de aceite: Após o registro do usuário verificar que a senha deve ser maior que 8 caracteres, contendo letras maículas, minúsculas e números.
+   - Critério de aceite: Após o registro do usuário verificar que o email deve ser maior que 8 caracteres.
+   - Critério de aceite: Após o registro do usuário verificar que a partir da data de nascimento que o usuário possui mais de 12 anos.
+   - Critério de aceite: Após o registro do usuário verificar que o nome deve ser menor que 50 caracteres.
+   - Critério de aceite: Após o registro do usuário verificar que o email deve ser menor que 50 caracteres.
+   - Critério de aceite: Após o registro do usuário verificar que a senha deve ser menor que 50 caracteres.
+   - Critério de aceite: Após o registro do usuário verificar que a data de nascimento deve ser menor que 130 anos.
+   - Critério de aceite: Após o registro do usuário verificar que a senha deve ser válida.
+   - Critério de aceite: Após o registro do usuário verificar que o telefone informado deve ser válido.
+   - Critério de aceite: Após o registro do usuário verificar que o telefone deve ser maior que 10 caracteres e é numérico.
 
 ### Stories do requisito específico 3.2
 

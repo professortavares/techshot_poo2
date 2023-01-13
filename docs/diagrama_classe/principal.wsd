@@ -1,21 +1,21 @@
 @startuml
 class Usuario {
     - String nome
-    - String nomeUsuario
-    - Date dataNascimento
-    + int getIdade()
+    - String nome_usuario
 }
 
 class InformacaoPessoal {
     - String email
     - String telefone
     - String senha
+    - Date data_nascimento
+    + int calcular_idade()
 }
 
 class Postagem {
 }
 
 Usuario "1"-->"1" InformacaoPessoal
-Usuario "1"--> "0..*" Postagem
+Usuario "1"*-- "0..*" Postagem
 
 @enduml

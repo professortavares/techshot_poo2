@@ -25,4 +25,4 @@ Para atualizar as dependências do projeto, use:
 > pytest
 
 Para cobertura de código, use:
-> pytest --cov=techshot_poo --cov-report html:cov_html
+> pytest --cov=techshot --cov-report html:cov_html

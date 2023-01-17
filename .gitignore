@@ -119,3 +119,4 @@ dmypy.json
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/techshot_poo2.iml
 /.idea/vcs.xml
+/backend/cov_html/

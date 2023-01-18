@@ -36,3 +36,21 @@ def test_usuario_sucesso():
     assert usuario.informacoes_pessoais.senha == '123456'
     assert usuario.informacoes_pessoais.data_nascimento == datetime(1990, 1, 1)
     assert usuario.postagens == []
+
+
+def testar_usuario_tamanho_nome():
+    """
+    Método responsável por testar a criação
+    de um usuário com um nome que não corresponde
+    as regras do requisito.
+
+    Cenário de teste: o usuário possui um nome
+    com menos de 3 caracteres.
+    """
+    # setup
+    # prepara os objetos para serem testados
+
+    try:
+        Usuario('Jo', '@fulano')
+    except ValueError as e:
+        assert str(e) == 'O nome do usuário deve ter pelo menos 3 caracteres.'

@@ -11,6 +11,8 @@ def test_usuario_sucesso():
     informações corretas e prontas para serem
     utilizadas.
     """
+    # setup
+    # prepara os objetos para serem testados
     usuario = Usuario('Fulano de Tal', '@fulano')
     informacao_pessoal = InformacaoPessoal(
         email='a@a.com.br',
@@ -20,6 +22,12 @@ def test_usuario_sucesso():
     )
     usuario.informacoes_pessoais = informacao_pessoal
 
+    # execução
+    # é a execução do método em si que será testado
+
+    # asserts
+    # são as verificações que serão feitas
+    # para validar se o método está funcionando
     assert usuario.nome == 'Fulano de Tal'
     assert usuario.nome_usuario == '@fulano'
     assert usuario.informacoes_pessoais is not None

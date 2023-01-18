@@ -19,3 +19,6 @@ class Usuario:
         self.informacoes_pessoais = None
         self.postagens = []
 
+        # validação do tamanho do nome
+        if len(self.nome) < 3:
+            raise ValueError('O nome do usuário deve ter pelo menos 3 caracteres.')

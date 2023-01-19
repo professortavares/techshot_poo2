@@ -1,24 +1,26 @@
-class Usuario:
+from pydantic import BaseModel, ValidationError, validator
+
+class Usuario(BaseModel):
     """
     Classe que representa um usuário da rede
     social Piui.
     """
+    nome: str
+    nome_usuario: str
+    informacoes_pessoais:type(None) = None
+    postagens: list[type(None)] = []
 
-    def __init__(self,
-                 nome:str,
-                 nome_usuario:str):
+
+    @validator('nome')
+    def validar_nome(cls, nome):
         """
-        Construtor da classe.
+        Valida o nome do usuário: segundo a regra
+        o nome de usuário deve ter no mínimo 3 caracteres.
 
-        :param nome: Nome completo do usuário.
-        :param nome_usuario: Nome de usuário da rede social (@).
+        :param nome: Nome do usuário.
+        :return: Nome do usuário.
         """
-        self.nome = nome
-        self.nome_usuario = nome_usuario
-        # As informações abaixo serão adicionadas posteriormente.
-        self.informacoes_pessoais = None
-        self.postagens = []
-
-        # validação do tamanho do nome
-        if len(self.nome) < 3:
+        if len(nome) < 3:
             raise ValueError('O nome do usuário deve ter pelo menos 3 caracteres.')
+        return nome
+

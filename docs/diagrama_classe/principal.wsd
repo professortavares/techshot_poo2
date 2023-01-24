@@ -13,6 +13,7 @@ class InformacaoPessoal {
 }
 
 class Postagem {
+   - String texto
 }
 
 Usuario "1"-->"1" InformacaoPessoal

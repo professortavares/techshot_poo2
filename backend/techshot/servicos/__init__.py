@@ -1,0 +1,1 @@
+from techshot.servicos.servico_usuario import ServicoUsario

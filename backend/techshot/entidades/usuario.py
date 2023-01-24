@@ -1,26 +1,17 @@
 from pydantic import BaseModel, ValidationError, validator
 
-class Usuario(BaseModel):
+class UsuarioCriacao(BaseModel):
     """
     Classe que representa um usuário da rede
     social Piui.
     """
     nome: str
     nome_usuario: str
-    informacoes_pessoais:type(None) = None
-    postagens: list[type(None)] = []
-
 
     @validator('nome')
-    def validar_nome(cls, nome):
-        """
-        Valida o nome do usuário: segundo a regra
-        o nome de usuário deve ter no mínimo 3 caracteres.
-
-        :param nome: Nome do usuário.
-        :return: Nome do usuário.
-        """
+    def nome_maior_que_3(cls, nome):
         if len(nome) < 3:
-            raise ValueError('O nome do usuário deve ter pelo menos 3 caracteres.')
+            raise ValidationError('O nome deve ter mais de 3 caracteres.')
+        elif len(nome) > 50:
+            raise ValidationError('O nome deve ter menos de 50 caracteres.')
         return nome
-

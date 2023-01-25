@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from techshot.entidades import UsuarioCriacao
-from techshot.servicos import ServicoUsario
+from techshot.servicos import ServicoUsuario
 from techshot.orm.base import Base
 from techshot.orm.usuario import Usuario
 from techshot.orm.informacao_pessoal import InformacaoPessoal
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # CRUD #
     ########
     # cria um novo usuário
-    servico = ServicoUsario(session)
+    servico = ServicoUsuario(session)
     usuario = servico.criar_usuario(
             UsuarioCriacao(nome='Fulano', nome_usuario='fulano')
         )
@@ -43,5 +43,6 @@ if __name__ == '__main__':
     usuario = servico.buscar_usuario_por_nome_usuario('fulano')
     # imprime o usuário buscado
     print(usuario)
+
 
 

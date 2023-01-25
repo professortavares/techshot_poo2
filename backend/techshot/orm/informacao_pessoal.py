@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Date, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from techshot.orm.base import Base
@@ -13,9 +13,9 @@ class InformacaoPessoal(Base):
     # Coluna que representa o id da informação pessoal.
     id = Column(Integer, primary_key=True)
     # Coluna que representa a data em que o objeto foi criado.
-    data_criacao = Column(Date, nullable=False)
+    data_criacao = Column(DateTime, nullable=False)
     # Coluna que representa a data em que o objeto foi atualizado.
-    data_atualizacao = Column(Date, nullable=False)
+    data_atualizacao = Column(DateTime, nullable=False)
     # Coluna que representa a versao em que o objeto se encontra.
     versao = Column(Integer, nullable=False, autoincrement=True)
 

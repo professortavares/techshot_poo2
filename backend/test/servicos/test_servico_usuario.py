@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from techshot.servicos import ServicoUsario
+from techshot.servicos import ServicoUsuario
 from techshot.orm.base import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -22,7 +22,7 @@ def session():
 
 def testar_crud_usuario(session):
     # cria um novo usuário
-    servico = ServicoUsario(session)
+    servico = ServicoUsuario(session)
     _ = servico.criar_usuario(
             UsuarioCriacao(nome='Fulano', nome_usuario='fulano')
         )
@@ -45,11 +45,14 @@ def testar_crud_usuario(session):
     # verifica que o usuário foi deletado
     assert usuario is None
 
-def testar_criar_usuario_com_informacao_pessoal(session):
+def testar_criar_usuario(session):
     # cria um novo usuário
-    servico = ServicoUsario(session)
+    servico = ServicoUsuario(session)
     _ = servico.criar_usuario(
             UsuarioCriacao(nome='Outro Fulano', nome_usuario='fulano2')
         )
     # busca o usuário criado
     usuario = servico.buscar_usuario_por_nome_usuario('fulano2')
+    assert usuario.nome == 'Outro Fulano'
+    assert usuario.nome_usuario == 'fulano2'
+

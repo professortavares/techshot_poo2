@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from sqlalchemy.orm import Session
 from techshot.entidades.usuario import UsuarioCriacao
 from techshot.orm.usuario import Usuario
 
-class ServicoUsario:
+class ServicoUsuario:
 
     def __init__(self, session):
         """
@@ -40,9 +39,11 @@ class ServicoUsario:
         """
         Método que obtém um usuário pelo nome de usuário.
         :param nome_usuario: Nome de usuário do usuário.
-        :return: Usuário encontrado.
+        :return: Usuário encontrado (se existir) ou nulo
+        caso contrário.
         """
-        return self.__session.query(Usuario).filter_by(nome_usuario=nome_usuario).first()
+        return self.__session.query(Usuario).filter_by(
+            nome_usuario=nome_usuario).first()
 
     def atualizar_usuario(self, usuario:Usuario):
         """

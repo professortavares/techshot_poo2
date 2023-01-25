@@ -120,3 +120,4 @@ dmypy.json
 /.idea/techshot_poo2.iml
 /.idea/vcs.xml
 /backend/cov_html/
+/backend/techshot.db

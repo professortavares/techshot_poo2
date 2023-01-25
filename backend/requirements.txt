@@ -2,3 +2,4 @@ faker==16.4.0
 pytest==7.2.1
 pytest-cov==4.0.0
 pydantic==1.10.4
+sqlalchemy==1.4.46

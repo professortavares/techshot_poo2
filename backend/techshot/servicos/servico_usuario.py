@@ -62,3 +62,10 @@ class ServicoUsuario:
         """
         self.__session.delete(usuario)
         self.__session.commit()
+
+    def listar_usuarios(self):
+        """
+        Método que lista todos os usuários.
+        :return: Lista de usuários.
+        """
+        return self.__session.query(Usuario).all()

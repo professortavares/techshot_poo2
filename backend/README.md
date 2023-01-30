@@ -21,7 +21,10 @@ E então instale o projeto:
 Para atualizar as dependências do projeto, use:
 > pip install --upgrade --force-reinstall -r requirements.txt
 
-5. Para executar os testes de unidade, use:
+5. Para executar a API do backend, use:
+> uvicorn main:app --reload
+
+6. Para executar os testes de unidade, use:
 > pytest
 
 Para cobertura de código, use:

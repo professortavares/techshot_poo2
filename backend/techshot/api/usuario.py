@@ -69,6 +69,7 @@ def deletar_usuario(nome_usuario:str,
     """
     servico = ServicoUsuario(session)
     usuario = servico.buscar_usuario_por_nome_usuario(nome_usuario)
+    servico.deletar_usuario(usuario)
     if usuario is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail="Usuário não encontrado")

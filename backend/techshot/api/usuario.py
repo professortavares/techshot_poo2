@@ -1,9 +1,9 @@
 from techshot.entidades import UsuarioCriacao
-from techshot.servicos.servico_usuario import ServicoUsuario
-from fastapi import status, HTTPException, Depends
+from techshot.servicos.usuario import ServicoUsuario
 from techshot.orm.database import get_session
 from sqlalchemy.orm import Session
 from fastapi.routing import APIRouter
+from fastapi import status, HTTPException, Depends
 
 
 class ApiUsuario:

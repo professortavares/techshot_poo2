@@ -4,6 +4,10 @@ from techshot.entidades.usuario import UsuarioCriacao
 from techshot.orm.usuario import Usuario
 
 class ServicoUsuario:
+    """
+    Classe responsável por fornecer os serviços
+    relacionados a usuários no Banco de dados.
+    """
 
     def __init__(self, session):
         """
@@ -11,6 +15,7 @@ class ServicoUsuario:
         :param session: Sessão do banco de dados.
         """
         self.__session = session
+
 
     def criar_usuario(self, dados_usuario:UsuarioCriacao):
         """
@@ -22,10 +27,6 @@ class ServicoUsuario:
 
         # cria uma instância de usuário
         usuario = Usuario(**dados_usuario.dict())
-        usuario.versao = 1
-        usuario.data_criacao = datetime.now()
-        usuario.data_atualizacao = datetime.now()
-
 
         # salva o usuário no banco de dados
         self.__session.add(usuario)

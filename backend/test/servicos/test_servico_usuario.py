@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from techshot.servicos import ServicoUsuario
 from techshot.orm.base import Base
 from sqlalchemy import create_engine

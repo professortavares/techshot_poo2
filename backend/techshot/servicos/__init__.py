@@ -1,1 +1,2 @@
-from techshot.servicos.servico_usuario import ServicoUsuario
+from techshot.servicos.usuario import ServicoUsuario
+from techshot.servicos.informacao_pessoal import ServicoInformacaoPessoal

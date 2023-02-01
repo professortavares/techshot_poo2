@@ -38,3 +38,4 @@ class InformacaoPessoal(Base):
 
     def __repr__(self):
         return f'InformacaoPessoal(id={self.id}, email={self.email}, telefone={self.telefone})'
+

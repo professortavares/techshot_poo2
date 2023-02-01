@@ -1,7 +1,7 @@
+from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from techshot.orm.base import Base
-from datetime import datetime
 class Postagem(Base):
     """
     Classe que representa uma postagem na rede

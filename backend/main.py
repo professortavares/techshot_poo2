@@ -1,5 +1,6 @@
-from techshot.api import usuario
+from techshot.api import ApiUsuario
 from fastapi import FastAPI
 
 app = FastAPI()
-app.include_router(usuario.router)
+api_usuario = ApiUsuario()
+app.include_router(api_usuario.router)

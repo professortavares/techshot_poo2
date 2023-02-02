@@ -121,3 +121,4 @@ dmypy.json
 /.idea/vcs.xml
 /backend/cov_html/
 /backend/techshot.db
+.vscode

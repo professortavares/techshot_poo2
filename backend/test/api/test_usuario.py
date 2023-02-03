@@ -2,11 +2,15 @@ import pytest
 from pytest import fixture
 from techshot.api import ApiUsuario
 from fastapi.testclient import TestClient
-from techshot.orm.base import Base
+from techshot.orm.usuario import Usuario
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi import FastAPI
 from techshot.orm.database import get_session
+import builtins
+import io
+import os
+
 import builtins
 import io
 import os
@@ -33,6 +37,7 @@ def client():
     app.dependency_overrides[get_session] = get_session_new
     yield TestClient(app)
     Base.metadata.drop_all(bind=engine)
+
 
 def test_crud_usuario_api(client):
     #add

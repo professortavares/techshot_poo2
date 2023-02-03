@@ -17,3 +17,14 @@ class InformacaoPessoalCriacao(BaseModel):
         if len(senha) < 6:
             raise ValidationError('A senha deve ter pelo menos 6 caracteres.')
         return senha
+    
+    @validator('data_nascimento')
+    def validar_idade(cls, data_nascimento):
+        idade = (datetime.now().year - data_nascimento).year - 1
+        if datetime.now().month > data_nascimento.month or ( \
+             datetime.now().month == data_nascimento.month and \
+             datetime.now().day >= data_nascimento.day):
+            idade += 1        
+        if idade < 12:
+            raise ValidationError('O usuário deve ter pelo menos 12 anos.')
+        return data_nascimento

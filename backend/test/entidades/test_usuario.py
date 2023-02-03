@@ -1,5 +1,5 @@
 import pytest
-from datetime import datetime
+from datetime import datetime, timedelta
 from techshot.entidades import UsuarioCriacao
 from techshot.entidades import InformacaoPessoalCriacao
 
@@ -60,4 +60,23 @@ def testar_usuario_tamanho_senha():
             telefone='(11) 99999-9999',
             senha='12345',
             data_nascimento=datetime(1990, 1, 1)
+        )
+
+def testar_usuario_idade():
+    """
+    Método responsável por testar a criação
+    de um usuário com uma senha que não corresponde
+    as regras do requisito.
+
+    Cenário de teste: o usuário tem menos de 12 anos de idade.
+    """
+    # setup
+    # prepara os objetos para serem testados
+
+    with pytest.raises(ValueError):
+        InformacaoPessoalCriacao(
+            email='a@a.com.br',
+            telefone='(11) 99999-9999',
+            senha='123457',
+            data_nascimento=datetime.now()-timedelta(days=3660)
         )

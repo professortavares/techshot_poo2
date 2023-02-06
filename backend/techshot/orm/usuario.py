@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from techshot.orm.base import Base
 
+
 class Usuario(Base):
     """
     Classe que representa um usuário da rede
@@ -20,7 +21,6 @@ class Usuario(Base):
     # Coluna que representa a versao em que o objeto se encontra.
     versao = Column(Integer, nullable=False, autoincrement=True)
 
-
     # Coluna que representa o nome do usuário.
     nome = Column(String(50), nullable=False)
     # Coluna que representa o nome de usuário (@).
@@ -30,7 +30,6 @@ class Usuario(Base):
     postagens = relationship('Postagem', back_populates='usuario')
     # Relacionamento com a tabela de informações pessoais.
     informacao_pessoal = relationship('InformacaoPessoal', back_populates='usuario')
-
 
     def __repr__(self):
         return f'Usuario(id={self.id}, nome={self.nome}, nome_usuario={self.nome_usuario})'

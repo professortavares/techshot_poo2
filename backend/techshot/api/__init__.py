@@ -1,1 +1,1 @@
-from techshot.api import usuario
+from techshot.api.usuario import UsuarioApi

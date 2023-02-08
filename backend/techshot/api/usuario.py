@@ -12,7 +12,6 @@ class UsuarioAPI:
     """
     Classe que representa a API de usuários
     """
-
     @staticmethod
     @router.post("/usuarios")
     def criar_usuario(dados_usuario:UsuarioCriacao,
@@ -30,6 +29,7 @@ class UsuarioAPI:
         servico = ServicoUsuario(session)
         usuario = servico.criar_usuario(dados_usuario)
         return usuario
+
 
     @staticmethod
     @router.get("/usuarios/{nome_usuario}")

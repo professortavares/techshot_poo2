@@ -3,7 +3,7 @@ from techshot.orm.base import Base
 from sqlalchemy.orm import sessionmaker
 
 # Cria uma instância de engine
-engine = create_engine('sqlite:///techshot.db', echo=True)
+engine = create_engine('sqlite:///volume/techshot.db', echo=True)
 
 # Cria uma instância de sessionmaker
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

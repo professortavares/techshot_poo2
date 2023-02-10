@@ -1,9 +1,9 @@
 from techshot.entidades import UsuarioCriacao
-from techshot.servicos.servico_usuario import ServicoUsuario
-from fastapi import status, HTTPException, Depends
+from techshot.servicos.usuario import ServicoUsuario
 from techshot.orm.database import get_session
 from sqlalchemy.orm import Session
 from fastapi.routing import APIRouter
+from fastapi import status, HTTPException, Depends
 
 
 class ApiUsuario:
@@ -30,6 +30,7 @@ class ApiUsuario:
 
     def buscar_usuario_por_nome_usuario(self, nome_usuario:str,
                                         session: Session = Depends(get_session)):
+
         """
         Método responsável por buscar um usuário pelo nome de usuário
         :param nome_usuario: nome de usuário
@@ -61,10 +62,10 @@ class ApiUsuario:
 
             # Atualiza os dados do usuário
             usuario.nome = dados_usuario.nome
-
             return servico.atualizar_usuario(usuario)
 
     def deletar_usuario(self, nome_usuario:str,
+
                         session: Session = Depends(get_session)):
         """
         Método responsável por deletar um usuário
@@ -78,7 +79,6 @@ class ApiUsuario:
         if usuario is None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                                 detail="Usuário não encontrado")
-
         return None
 
 

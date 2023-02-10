@@ -15,3 +15,4 @@ class UsuarioCriacao(BaseModel):
         elif len(nome) > 50:
             raise ValidationError('O nome deve ter menos de 50 caracteres.')
         return nome
+

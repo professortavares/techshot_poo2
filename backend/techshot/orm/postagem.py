@@ -1,8 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
 from techshot.orm.base import Base
-
 class Postagem(Base):
     """
     Classe que representa uma postagem na rede
@@ -12,14 +11,14 @@ class Postagem(Base):
     # Nome da tabela no banco de dados.
     __tablename__ = 'tb_postagem'
 
-    # Coluna que representa o id da postagem.
+    # Coluna que representa o id da informação pessoal.
     id = Column(Integer, primary_key=True)
     # Coluna que representa a data em que o objeto foi criado.
-    data_criacao = Column(Date, nullable=False)
+    data_criacao = Column(DateTime, nullable=False, default=datetime.now)
     # Coluna que representa a data em que o objeto foi atualizado.
-    data_atualizacao = Column(Date, nullable=False)
+    data_atualizacao = Column(DateTime, nullable=False, default=datetime.now)
     # Coluna que representa a versao em que o objeto se encontra.
-    versao = Column(Integer, nullable=False, autoincrement=True)
+    versao = Column(Integer, nullable=False, autoincrement=True, default=1)
 
     # Coluna que representa o texto da postagem.
     texto = Column(String(255), nullable=False)

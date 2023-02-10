@@ -2,7 +2,7 @@ import pytest
 from pytest import fixture
 from techshot.api import ApiUsuario
 from fastapi.testclient import TestClient
-from techshot.orm.usuario import Usuario
+from techshot.orm.base import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi import FastAPI
@@ -71,9 +71,3 @@ def test_crud_usuario_api(client):
     assert response.status_code == 200
     response = client.get('/usuarios/jao')
     assert response.status_code == 404
-
-    # cria uma instância de sessionmaker
-    Session = sessionmaker(bind=engine, autocommit=False, autoflush=False)
-    # cria uma instância de sessão
-    session = Session()
-    return session

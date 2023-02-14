@@ -123,3 +123,4 @@ dmypy.json
 /backend/techshot.db
 /backend/volume/techshot.db
 .vscode
+volume

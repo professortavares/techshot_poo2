@@ -2,6 +2,8 @@ from datetime import datetime
 
 from techshot.entidades.informacao_pessoal import InformacaoPessoalCriacao
 from techshot.orm.informacao_pessoal import InformacaoPessoal
+from techshot.orm.usuario import Usuario
+from techshot.aux_function import codifica_senha
 
 class ServicoInformacaoPessoal:
 
@@ -12,60 +14,54 @@ class ServicoInformacaoPessoal:
         """
         self.__session = session
 
-    def criar_usuario(self, dados_usuario:UsuarioCriacao):
+    def criar_informacao_pessoal(self, dados_informacao: InformacaoPessoalCriacao):
         """
         Método que cria um novo usuário e
         salvá-lo no banco de dados.
-        :param dados_usuario: Dados do usuário que será criado.
-        :return: Usuário criado.
+        :param dados_informacao: Dados da informacao pessoal que será criada.
+        :return: informacaopessoal criada.
         """
 
         # cria uma instância de usuário
-        usuario = Usuario(**dados_usuario.dict())
-        usuario.versao = 1
-        usuario.data_criacao = datetime.now()
-        usuario.data_atualizacao = datetime.now()
-
-
+        info_pessoal = InformacaoPessoal(**dados_informacao.dict())
+        info_pessoal.versao = 1
+        info_pessoal.data_criacao = datetime.now()
+        info_pessoal.data_atualizacao = datetime.now()
+        
         # salva o usuário no banco de dados
-        self.__session.add(usuario)
+        self.__session.add(info_pessoal)
         # salva as alterações no banco de dados
         self.__session.commit()
 
         # retorna o usuário criado
-        return usuario
+        return info_pessoal
 
-    def buscar_usuario_por_nome_usuario(self, nome_usuario:str):
+    def buscar_informacao_pessoal_por_usuario(self, usuario:Usuario):
         """
-        Método que obtém um usuário pelo nome de usuário.
-        :param nome_usuario: Nome de usuário do usuário.
+        Método que obtém uma informação pessoal pelo id do usuário.
+        :param id_usuario: id do usuário do usuário.
         :return: Usuário encontrado (se existir) ou nulo
         caso contrário.
         """
-        return self.__session.query(Usuario).filter_by(
-            nome_usuario=nome_usuario).first()
+        return self.__session.query(InformacaoPessoal).filter_by(
+            usuario=usuario).first()
 
-    def atualizar_usuario(self, usuario:Usuario):
+    def atualizar_informacao_pessoal(self, informacao_pessoal: InformacaoPessoal):
         """
-        Método que atualiza um usuário.
-        :param usuario: Usuário que será atualizado.
+        Método que atualiza as informações de usuario.
+        :param informacao_pessoal: InformaçãoPessoal que será atualizada.
         """
-        usuario.versao += 1
-        usuario.data_atualizacao = datetime.now()
+        informacao_pessoal.versao += 1
+        informacao_pessoal.data_atualizacao = datetime.now()
+        informacao_pessoal.senha = codifica_senha(informacao_pessoal.senha)
+
         self.__session.commit()
-        return usuario
+        return informacao_pessoal
 
-    def deletar_usuario(self, usuario:Usuario):
+    def deletar_informacao_pessoal(self, informacao_pessoal: InformacaoPessoal):
         """
-        Método que deleta um usuário.
+        Método que deleta informacao pessoal.
         :param usuario: Usuário que será deletado.
         """
-        self.__session.delete(usuario)
+        self.__session.delete(informacao_pessoal)
         self.__session.commit()
-
-    def listar_usuarios(self):
-        """
-        Método que lista todos os usuários.
-        :return: Lista de usuários.
-        """
-        return self.__session.query(Usuario).all()

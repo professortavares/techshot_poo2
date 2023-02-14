@@ -61,7 +61,6 @@ class ApiUsuario:
 
             # Atualiza os dados do usuário
             usuario.nome = dados_usuario.nome
-
             return servico.atualizar_usuario(usuario)
 
     def deletar_usuario(self, nome_usuario:str,
@@ -78,7 +77,6 @@ class ApiUsuario:
         if usuario is None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                                 detail="Usuário não encontrado")
-
         return None
 
 

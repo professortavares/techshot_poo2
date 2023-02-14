@@ -1,3 +1,4 @@
+
 from techshot.servicos.servico_informacaopessoal import ServicoInformacaoPessoal
 from techshot.servicos.usuario import ServicoUsuario
 from techshot.entidades import UsuarioCriacao
@@ -59,6 +60,7 @@ def test_crud_informacao_pessoal(session):
     assert info.data_nascimento == data_teste.date()
     assert info.senha == codifica_senha('123456')
 
+
     # TESTE
     info = servico.buscar_informacao_pessoal_por_usuario(usuario)
     # asserts
@@ -67,6 +69,7 @@ def test_crud_informacao_pessoal(session):
     assert info.telefone == '(11) 99999-9999'
     assert info.data_nascimento == data_teste.date()
     assert info.senha == codifica_senha('123456')
+
 
     # alteração da informação pessoal
     info.email = 'b@b.com.br'
@@ -80,10 +83,8 @@ def test_crud_informacao_pessoal(session):
     assert info.data_nascimento == data_teste.date()
     assert info.senha == codifica_senha('654321')
 
+
     # remoção da informação pessoal
     servico.deletar_informacao_pessoal(info)
     # asserts
     assert servico.buscar_informacao_pessoal_por_usuario(usuario) is None
-
-
-

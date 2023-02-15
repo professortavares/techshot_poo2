@@ -53,7 +53,6 @@ class ServicoInformacaoPessoal:
         """
         informacao_pessoal.versao += 1
         informacao_pessoal.data_atualizacao = datetime.now()
-        informacao_pessoal.senha = codifica_senha(informacao_pessoal.senha)
 
         self.__session.commit()
         return informacao_pessoal

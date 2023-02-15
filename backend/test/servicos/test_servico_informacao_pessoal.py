@@ -74,7 +74,7 @@ def test_crud_informacao_pessoal(session):
     # alteração da informação pessoal
     info.email = 'b@b.com.br'
     info.telefone = '(11) 88888-8888'
-    info.senha = '654321'
+    info.senha = codifica_senha('654321')
     info = servico.atualizar_informacao_pessoal(info)
 
     # asserts

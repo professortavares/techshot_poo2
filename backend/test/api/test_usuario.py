@@ -7,13 +7,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi import FastAPI
 from techshot.orm.database import get_session
-import builtins
-import io
-import os
-
-import builtins
-import io
-import os
+from datetime import datetime, timedelta, date
+from techshot.aux_function import codifica_senha
 
 
 @fixture
@@ -70,4 +65,41 @@ def test_crud_usuario_api(client):
     response = client.delete('/usuarios/jao')
     assert response.status_code == 200
     response = client.get('/usuarios/jao')
+    assert response.status_code == 404
+
+def test_info_pessoal_api(client):
+    data_teste = (datetime.today() - timedelta(days=365 * 15))
+    data_str = data_teste.isoformat()
+    client.post('/usuarios', json={"nome": "Joao", 
+                                   "nome_usuario": "jao"})
+    response = client.post('info_pessoal/jao', json={'email':'a@a.com.br',\
+                'telefone':'(11) 99999-9999',\
+                'data_nascimento': data_str,\
+                'senha':'123456'})
+    assert response.status_code == 200
+    #search found
+    response = client.get('/info_pessoal/jao')
+    assert response.status_code == 200
+    response_data = response.json()
+    assert response_data['email'] == 'a@a.com.br'
+    assert response_data['telefone'] == '(11) 99999-9999'
+    assert response_data['senha'] == codifica_senha('123456')
+    assert date.fromisoformat(response_data['data_nascimento']) == data_teste.date()
+    #put
+    response = client.put('info_pessoal/jao', json={'email':'b@a.com.br',\
+                'telefone':'(11) 99999-9998',\
+                'data_nascimento':data_teste.isoformat(),\
+                'senha':'654321'})
+    assert response.status_code == 200
+    response = client.get('/info_pessoal/jao')
+    assert response.status_code == 200
+    response_data = response.json()
+    assert response_data['email'] == 'b@a.com.br'
+    assert response_data['telefone'] == '(11) 99999-9998'
+    assert response_data['senha'] == codifica_senha('654321')
+    assert response_data['versao'] == 2
+    #delete
+    response = client.delete('/info_pessoal/jao')
+    assert response.status_code == 200
+    response = client.get('/info_pessoal/jao')
     assert response.status_code == 404

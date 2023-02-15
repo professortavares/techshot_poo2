@@ -12,17 +12,29 @@ class ServicoUsuario:
     def __init__(self, session):
         """
         Construtor da classe.
-        :param session: Sessão do banco de dados.
+
+        Parâmetros:
+        -----------
+        session: session
+            Sessão do banco de dados.
         """
         self.__session = session
 
 
-    def criar_usuario(self, dados_usuario:UsuarioCriacao):
+    def criar_usuario(self, dados_usuario:UsuarioCriacao)->Usuario:
         """
         Método que cria um novo usuário e
         salvá-lo no banco de dados.
-        :param dados_usuario: Dados do usuário que será criado.
-        :return: Usuário criado.
+
+        Parâmetros:
+        -----------
+        dados_usuario: UsuarioCriacao
+            Dados do usuário a ser criado.
+
+        Retorno:
+        --------
+        Usuario
+            Usuário criado.
         """
 
         # cria uma instância de usuário
@@ -33,6 +45,7 @@ class ServicoUsuario:
         # salva as alterações no banco de dados
         self.__session.commit()
 
+        self.__session.refresh(usuario)
         # retorna o usuário criado
         return usuario
 
@@ -54,6 +67,8 @@ class ServicoUsuario:
         usuario.versao += 1
         usuario.data_atualizacao = datetime.now()
         self.__session.commit()
+        self.__session.refresh(usuario)
+
         return usuario
 
     def deletar_usuario(self, usuario:Usuario):

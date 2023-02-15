@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>techshot.servicos.usuario &mdash; Documentação Techshot Turma 2 </title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Pesquisar" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Techshot Turma 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar docs" aria-label="Pesquisar docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">techshot</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Techshot Turma 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Código do módulo</a></li>
+      <li class="breadcrumb-item active">techshot.servicos.usuario</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Código fonte de techshot.servicos.usuario</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">techshot.entidades.usuario</span> <span class="kn">import</span> <span class="n">UsuarioCriacao</span>
+<span class="kn">from</span> <span class="nn">techshot.orm.usuario</span> <span class="kn">import</span> <span class="n">Usuario</span>
+
+<div class="viewcode-block" id="ServicoUsuario"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario">[documentos]</a><span class="k">class</span> <span class="nc">ServicoUsuario</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe responsável por fornecer os serviços</span>
+<span class="sd">    relacionados a usuários no Banco de dados.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construtor da classe.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        session: session</span>
+<span class="sd">            Sessão do banco de dados.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span> <span class="o">=</span> <span class="n">session</span>
+
+
+<div class="viewcode-block" id="ServicoUsuario.criar_usuario"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario.criar_usuario">[documentos]</a>    <span class="k">def</span> <span class="nf">criar_usuario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dados_usuario</span><span class="p">:</span><span class="n">UsuarioCriacao</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Usuario</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método que cria um novo usuário e</span>
+<span class="sd">        salvá-lo no banco de dados.</span>
+
+<span class="sd">        Parâmetros:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        dados_usuario: UsuarioCriacao</span>
+<span class="sd">            Dados do usuário a ser criado.</span>
+
+<span class="sd">        Retorno:</span>
+<span class="sd">        --------</span>
+<span class="sd">        Usuario</span>
+<span class="sd">            Usuário criado.</span>
+
+<span class="sd">        Exemplo de uso:</span>
+<span class="sd">        ---------------</span>
+<span class="sd">        &gt;&gt;&gt; from techshot.servicos.usuario import ServicoUsuario</span>
+<span class="sd">        &gt;&gt;&gt; url = &quot;http://127.0.0.1:8000/usuarios/usuarios&quot;</span>
+<span class="sd">        &gt;&gt;&gt; payload = {}</span>
+<span class="sd">        &gt;&gt;&gt; headers = {</span>
+<span class="sd">        &gt;&gt;&gt;   &#39;accept&#39;: &#39;application/json&#39;</span>
+<span class="sd">        &gt;&gt;&gt; }</span>
+<span class="sd">        &gt;&gt;&gt; response = requests.request(&quot;GET&quot;, url, headers=headers, data=payload)</span>
+<span class="sd">        &gt;&gt;&gt; retorno = json.loads(response.text)</span>
+<span class="sd">        &gt;&gt;&gt; print(retorno)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># cria uma instância de usuário</span>
+        <span class="n">usuario</span> <span class="o">=</span> <span class="n">Usuario</span><span class="p">(</span><span class="o">**</span><span class="n">dados_usuario</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+
+        <span class="c1"># salva o usuário no banco de dados</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+        <span class="c1"># salva as alterações no banco de dados</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+        <span class="c1"># retorna o usuário criado</span>
+        <span class="k">return</span> <span class="n">usuario</span></div>
+
+<div class="viewcode-block" id="ServicoUsuario.buscar_usuario_por_nome_usuario"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario.buscar_usuario_por_nome_usuario">[documentos]</a>    <span class="k">def</span> <span class="nf">buscar_usuario_por_nome_usuario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nome_usuario</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método que obtém um usuário pelo nome de usuário.</span>
+<span class="sd">        :param nome_usuario: Nome de usuário do usuário.</span>
+<span class="sd">        :return: Usuário encontrado (se existir) ou nulo</span>
+<span class="sd">        caso contrário.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Usuario</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span>
+            <span class="n">nome_usuario</span><span class="o">=</span><span class="n">nome_usuario</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ServicoUsuario.atualizar_usuario"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario.atualizar_usuario">[documentos]</a>    <span class="k">def</span> <span class="nf">atualizar_usuario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">usuario</span><span class="p">:</span><span class="n">Usuario</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método que atualiza um usuário.</span>
+<span class="sd">        :param usuario: Usuário que será atualizado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">usuario</span><span class="o">.</span><span class="n">versao</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">usuario</span><span class="o">.</span><span class="n">data_atualizacao</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">usuario</span></div>
+
+<div class="viewcode-block" id="ServicoUsuario.deletar_usuario"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario.deletar_usuario">[documentos]</a>    <span class="k">def</span> <span class="nf">deletar_usuario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">usuario</span><span class="p">:</span><span class="n">Usuario</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método que deleta um usuário.</span>
+<span class="sd">        :param usuario: Usuário que será deletado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="ServicoUsuario.listar_usuarios"><a class="viewcode-back" href="../../../techshot.servicos.html#techshot.servicos.usuario.ServicoUsuario.listar_usuarios">[documentos]</a>    <span class="k">def</span> <span class="nf">listar_usuarios</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Método que lista todos os usuários.</span>
+<span class="sd">        :return: Lista de usuários.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Usuario</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Enacom.</p>
+  </div>
+
+  Compilado com <a href="https://www.sphinx-doc.org/">Sphinx</a> usando um
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">tema</a>
+    fornecido por <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

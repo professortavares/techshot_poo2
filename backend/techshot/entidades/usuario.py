@@ -8,6 +8,8 @@ class UsuarioCriacao(BaseModel):
     nome: str
     nome_usuario: str
 
+
+
     @validator('nome')
     def nome_maior_que_3(cls, nome):
         if len(nome) < 3:

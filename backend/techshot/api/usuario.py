@@ -27,7 +27,11 @@ class UsuarioAPI:
         :return:
         """
         servico = ServicoUsuario(session)
-        usuario = servico.criar_usuario(dados_usuario)
+        try:
+            usuario = servico.criar_usuario(dados_usuario)
+        except Exception as e:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                                detail=str(e))
         return usuario
 
 
@@ -46,7 +50,7 @@ class UsuarioAPI:
         if usuario is None:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                                 detail="Usuário não encontrado")
-        return usuario.id
+        return usuario
 
     @staticmethod
     @router.put("/usuarios/{nome_usuario}")
